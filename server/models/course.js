@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const courseSchema = new Schema({
   name:String,
-  durationTime: Number
+  durationTime: Number,
+  //courseDays:String,
 },{versionKey: false})
 
-module.exports = mongoose.model('Courses', courseSchema)
+module.exports = mongoose.model('Course', courseSchema)

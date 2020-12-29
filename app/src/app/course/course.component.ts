@@ -1,3 +1,5 @@
+import { CourseService } from './../course.service';
+import { Course } from './../course';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  courseName: String = ''
+  courseTime: Number
+  //coursePeriod:String[]
+  allCourses: Course[] = [
+    {
+      name: 'Informática Aplicada',
+      //courseDays: 'Terça-Feira',
+      durationTime: 6,
+      _id: '385129475'
+    },
+    {
+      name: 'Assistente Administrativo Completo',
+      //courseDays: 'Terça-Feira',
+      durationTime: 20,
+      _id: '5129058123',
+    }
+  ]
 
-  ngOnInit(): void {
+  constructor(
+private courseService: CourseService
+
+  ) { }
+
+  ngOnInit() {
+
+    this.courseService.get().subscribe((courses)=>this.allCourses = courses)
+  }
+
+  save() {
+    this.courseService.add({
+      name: this.courseName,
+      durationTime: this.courseTime,
+      //courseDays:this.coursePeriod,
+    }).subscribe(
+      (course)=>{
+        console.log(course)
+
+      },
+      (err)=>console.error(err))
+    console.log("Salvou")
+  }
+
+  cancel() {
+    console.log("cancelado")
+  }
+  edit(course: Course) {
+    console.log('Editado')
+  }
+  delete(course: Course) {
+    console.log('Sumiu :D')
+  }
+  clearFields(){
+    this.courseName = ''
+    this.courseTime
   }
 
 }
