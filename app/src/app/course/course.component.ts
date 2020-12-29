@@ -33,7 +33,6 @@ private courseService: CourseService
   ) { }
 
   ngOnInit() {
-
     this.courseService.get().subscribe((courses)=>this.allCourses = courses)
   }
 
@@ -45,6 +44,7 @@ private courseService: CourseService
     }).subscribe(
       (course)=>{
         console.log(course)
+        this.clearFields()
 
       },
       (err)=>console.error(err))
@@ -62,7 +62,6 @@ private courseService: CourseService
   }
   clearFields(){
     this.courseName = ''
-    this.courseTime
+    this.courseTime = 0
   }
-
 }

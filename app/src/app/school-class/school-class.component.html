@@ -1,1 +1,35 @@
-<p>school-class works!</p>
+<mat-card>
+  <mat-card-title>Turmas</mat-card-title>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutAlign="space-between">
+      <mat-form-field>
+        <input matInput [(ngModel)]="className" type="text">
+        <mat-hint>Nome da Turma</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+       <mat-select>
+         <mat-option>Escolha um curso</mat-option>
+         <mat-option>Curso tal</mat-option>
+        </mat-select>
+        <mat-hint>Qual curso?</mat-hint>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="end end">
+        <button mat-button color="primary" (click)="save()">Salvar</button>
+        <button mat-button color="warn" (click)="cancel()">Cancelar</button>
+      </div>
+    </div>
+    <mat-list>
+      <h3 mat-subheader>Lista de Turmas</h3>
+      <mat-list-item *ngFor="let SchoolClass of allClasses">
+        <mat-icon mat-list-icon>people</mat-icon>
+        <h4 mat-line>{{schoolClass.className}}</h4>
+        <button mat-icon-button color="accent" (click)="delete(schoolClass)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary"  (click)="edit(schoolClass)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

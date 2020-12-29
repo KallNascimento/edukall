@@ -3,6 +3,7 @@ const bodyparser = require ('body-parser')
 const cors = require ('cors')
 const mongoose = require ('mongoose')
 const course_controller = require ('./controllers/courses_controller')
+const schoolClass_controller = require('./controllers/schoolClass_controller')
 const app = express();
 
 app.use(bodyparser.json());
@@ -13,6 +14,6 @@ mongoose.connect('mongodb+srv://root:toor@cluster0.qmrlp.mongodb.net/edukall?ret
 {useNewUrlParser: true},
  {useUnifiedTopology: true})
 app.use('/courses', course_controller)
-//app.use('/school-classes',classes_controller)
+app.use('/school-classes',schoolClass_controller)
 //app.use('/students',students_controller)
 app.listen(4201)

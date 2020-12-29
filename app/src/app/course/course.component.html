@@ -15,8 +15,8 @@
         <button mat-button color="warn" (click)="cancel()">Cancelar</button>
       </div>
     </div>
+    <h3 mat-subheader>Lista de Cursos</h3>
     <mat-list>
-      <h3 mat-subheader>Lista de Cursos</h3>
       <mat-list-item *ngFor="let course of allCourses">
         <mat-icon mat-list-icon>folder</mat-icon>
         <h4 mat-line>{{course.name}}</h4>
@@ -26,9 +26,14 @@
         <button mat-icon-button color="primary"  (click)="edit(course)">
           <mat-icon>edit</mat-icon>
         </button>
-
       </mat-list-item>
     </mat-list>
+
+    <mat-tree>
+      <mat-tree-node> parent node </mat-tree-node>
+      <mat-tree-node> -- child node1 </mat-tree-node>
+      <mat-tree-node> -- child node2 </mat-tree-node>
+    </mat-tree>
 
   </mat-card-content>
 </mat-card>
