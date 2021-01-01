@@ -1,6 +1,9 @@
 import { SchoolClassService } from './../school-class.service';
 import { SchoolClass } from './../school-class';
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../course.service';
+
+
 
 @Component({
   selector: 'app-school-class',
@@ -28,12 +31,13 @@ export class SchoolClassComponent implements OnInit {
   ]
 
   constructor(
-private classService: SchoolClassService
+private classService: SchoolClassService, course:CourseService
 
   ) { }
 
   ngOnInit() {
     this.classService.get().subscribe((schoolClasses)=>this.allClasses = schoolClasses)
+    
   }
 
   save() {
