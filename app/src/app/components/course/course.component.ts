@@ -1,6 +1,9 @@
 import { CourseService } from '../../services/course.service';
 import { Course } from '../../interfaces/course';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-course',
@@ -12,58 +15,80 @@ export class CourseComponent implements OnInit {
   courseName: String = ''
   courseTime: Number
   //coursePeriod:String[]
-  allCourses: Course[] = [
-    {
-      name: 'Informática Aplicada',
-      //courseDays: 'Terça-Feira',
-      durationTime: 6,
-      _id: '385129475'
-    },
-    {
-      name: 'Assistente Administrativo Completo',
-      //courseDays: 'Terça-Feira',
-      durationTime: 20,
-      _id: '5129058123',
-    }
-  ]
+  allCourses: Course[]
+  courseEdit: Course = null
+  private unsubscribe$ :Subject<any> = new Subject()
 
   constructor(
-private courseService: CourseService
-
+    private courseService: CourseService,
+    private snackBar:MatSnackBar,
   ) { }
 
   ngOnInit() {
-   this.getCourses()
+    this.getCourses()
   }
-  getCourses(){
-    this.courseService.get().subscribe((courses)=>this.allCourses = courses)
+  ngOnDestroy (){
+    this.unsubscribe$.next()
+  }
+  getCourses() {
+    this.courseService.get()
+    .pipe( takeUntil(this.unsubscribe$))
+    .subscribe((courses) => this.allCourses = courses)
   }
   save() {
-    this.courseService.add({
-      name: this.courseName,
-      durationTime: this.courseTime,
-      //courseDays:this.coursePeriod,
-    }).subscribe(
-      (course)=>{
-        console.log(course)
-        this.clearFields()
-
-      },
-      (err)=>console.error(err))
-    console.log("Salvou")
+    if (this.courseEdit) {
+      this.courseService.update(
+        { name: this.courseName,
+          durationTime:this.courseTime,
+          _id: this.courseEdit._id }
+        ).subscribe(
+          (course)=>{
+              this.notify("Atualizado com sucesso!")
+              this.clearFields()
+          },
+          (err)=>{
+            this.notify("Erro!")
+            console.error(err)
+          }
+        )
+    }
+    else {
+      this.courseService.add({
+        name: this.courseName,
+        durationTime: this.courseTime,
+        //courseDays:this.coursePeriod,
+      }).subscribe(
+        (course) => {
+          console.log(course)
+          this.clearFields()
+          this.notify("Cadastrado com sucesso!")
+        },
+        (err) => console.error(err))
+      console.log("Salvou")
+    }
   }
 
   cancel() {
     console.log("cancelado")
   }
   edit(course: Course) {
-    console.log('Editado')
+    this.courseName = course.name
+    this.courseTime = course.durationTime
+    this.courseEdit = course
   }
   delete(course: Course) {
-    console.log('Sumiu :D')
+    this.courseService.del(course).subscribe(
+      ()=> this.notify("Registro apagado!"),
+      (err) => console.log(err)
+    )
   }
-  clearFields(){
+  clearFields() {
     this.courseName = ''
     this.courseTime = 0
+    this.courseEdit = null
+  }
+
+  notify(msg: string){
+    this.snackBar.open(msg, "OK", {duration:3000})
   }
 }

@@ -8,8 +8,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Escolha o Curso</mat-label>
-       <mat-select [(value)]="selectedValue" [(ngModel)]="courseID">
-         <mat-option value="{{course.id}}"  *ngFor="let course of allCourses">{{course.name}}</mat-option>
+       <mat-select [(value)]="selectedValue" [(ngModel)]="selectedValue">
+         <mat-option value={{course._id}} *ngFor="let course of allCourses">{{course.name}}</mat-option>
         </mat-select>
 
       </mat-form-field>

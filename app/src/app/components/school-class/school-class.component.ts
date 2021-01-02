@@ -12,22 +12,11 @@ import { Course } from 'src/app/interfaces/course';
 export class SchoolClassComponent implements OnInit {
 
   className: String = ''
-  allCourses: Course[]=[]
+  selectedValue=""
+
+  allCourses: Course[]
   //coursePeriod:String[]
-  allClasses: SchoolClass[] = [
-    {
-      name: 'Informática 1',
-      //courseDays: 'Terça-Feira',
-      //durationTime: 6,
-      _id: '385129475'
-    },
-    {
-      name: 'Informática 2',
-      //courseDays: 'Terça-Feira',
-      //durationTime: 20,
-      _id: '5129058123',
-    }
-  ]
+  allClasses: SchoolClass[]
 
   constructor(
           private schoolClassService: SchoolClassService,
@@ -47,6 +36,7 @@ export class SchoolClassComponent implements OnInit {
   save() {
     this.schoolClassService.add({
       name: this.className,
+      course: this.selectedValue
   //durationTime: this.courseTime,
       //courseDays:this.coursePeriod,
     }).subscribe(
