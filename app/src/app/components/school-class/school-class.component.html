@@ -3,15 +3,16 @@
   <mat-card-content>
     <div fxLayout="column" fxLayoutAlign="space-between">
       <mat-form-field>
+        <mat-label>Nome da Turma</mat-label>
         <input matInput [(ngModel)]="className" type="text">
-        <mat-hint>Nome da Turma</mat-hint>
       </mat-form-field>
-      <!-- <mat-form-field>
-       <mat-select *ngFor="let Course of Courses">
-         <mat-option>Curso tal</mat-option>
+      <mat-form-field>
+        <mat-label>Escolha o Curso</mat-label>
+       <mat-select [(value)]="selectedValue" [(ngModel)]="courseID">
+         <mat-option value="{{course.id}}"  *ngFor="let course of allCourses">{{course.name}}</mat-option>
         </mat-select>
-        <mat-hint>Qual curso?</mat-hint>
-      </mat-form-field> -->
+
+      </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="end end">
         <button mat-button color="primary" (click)="save()">Salvar</button>
         <button mat-button color="warn" (click)="cancel()">Cancelar</button>
@@ -19,9 +20,9 @@
     </div>
     <mat-list>
       <h3 mat-subheader>Lista de Turmas</h3>
-      <mat-list-item *ngFor="let SchoolClass of allClasses">
+      <mat-list-item *ngFor="let classe of allClasses">
         <mat-icon mat-list-icon>people</mat-icon>
-        <h4 mat-line>{{SchoolClass.className}}</h4>
+        <h4 mat-line>{{classe.name}}</h4>
         <button mat-icon-button color="accent" (click)="delete(schoolClass)">
           <mat-icon>delete</mat-icon>
         </button>

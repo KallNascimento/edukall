@@ -3,12 +3,12 @@
   <mat-card-content>
     <div fxLayout="column" fxLayoutAlign="space-between">
       <mat-form-field>
+        <mat-label>Nome do Curso</mat-label>
         <input matInput [(ngModel)]="courseName" type="text">
-        <mat-hint>Nome do Curso</mat-hint>
       </mat-form-field>
       <mat-form-field>
         <input matInput [(ngModel)]="courseTime" type="text">
-        <mat-hint>Duração do curso em meses</mat-hint>
+        <mat-label>Duração do curso em meses</mat-label>
       </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="end end">
         <button mat-button color="primary" (click)="save()">Salvar</button>

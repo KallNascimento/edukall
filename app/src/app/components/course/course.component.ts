@@ -1,5 +1,5 @@
-import { CourseService } from './../course.service';
-import { Course } from './../course';
+import { CourseService } from '../../services/course.service';
+import { Course } from '../../interfaces/course';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -33,9 +33,11 @@ private courseService: CourseService
   ) { }
 
   ngOnInit() {
+   this.getCourses()
+  }
+  getCourses(){
     this.courseService.get().subscribe((courses)=>this.allCourses = courses)
   }
-
   save() {
     this.courseService.add({
       name: this.courseName,
