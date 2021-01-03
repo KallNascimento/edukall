@@ -1,13 +1,33 @@
 <mat-toolbar color="primary" fxLayout="column">
   <mat-toolbar-row>
-    <span>Edukall App</span>
+    <span>Edukall</span>
+    <button mat-button><span>Início</span></button>
+    <button mat-button><span>Turmas</span></button>
+    <button mat-button><span>Cursos</span></button>
+    <button mat-button [matMenuTriggerFor]="menu"><span> Financeiro</span></button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
+
 <mat-card>
-  <div fxLayout = "row" fxLayoutAlign ="space-between stretch">
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
     <app-course fxFlex="40"></app-course>
-    
+
     <app-school-class fxFlex="55">
     </app-school-class>
-</div>
+  </div>
 </mat-card>
