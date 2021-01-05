@@ -1,6 +1,5 @@
 export interface Course {
   name: String,
-  durationTime:Number,
-  //courseDays:String,
+  durationTime:Number
   _id?:String
 }

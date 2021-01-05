@@ -1,9 +1,9 @@
 <mat-toolbar color="primary" fxLayout="column">
   <mat-toolbar-row>
-    <span>Edukall</span>
-    <button mat-button><span>Início</span></button>
-    <button mat-button><span>Turmas</span></button>
-    <button mat-button><span>Cursos</span></button>
+    <span><mat-icon>school</mat-icon> Edukall </span>
+    <a routerLink="/home" mat-button><span>Início</span></a>
+    <a  routerLink="/school-classes" mat-button><span>Turmas</span></a>
+    <a routerLink="/courses" mat-button><span>Cursos</span></a>
     <button mat-button [matMenuTriggerFor]="menu"><span> Financeiro</span></button>
 
     <mat-menu #menu="matMenu">
@@ -24,10 +24,13 @@
 </mat-toolbar>
 
 <mat-card>
-  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+  <router-outlet></router-outlet>
+</mat-card>
+
+
+  <!-- <div fxLayout="row" fxLayoutAlign="space-between stretch">
     <app-course fxFlex="40"></app-course>
 
     <app-school-class fxFlex="55">
     </app-school-class>
-  </div>
-</mat-card>
+  </div> -->

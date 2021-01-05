@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
   cti: Number,
-  course:[{type: mongoose.Schema.Types.ObjectId,ref:'Courses'}],
+  schoolClass:[{type: mongoose.Schema.Types.ObjectId,ref:'schoolClasses'}],
   name: String,
-  grade:[],
+  grades:Number,
   status : Boolean,
-  notes : []
+  notes : String
 },{versionKey: false})
 
 module.exports = mongoose.model('Student',studentSchema)

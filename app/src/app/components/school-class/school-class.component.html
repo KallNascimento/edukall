@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>Turmas</mat-card-title>
+  <mat-card-title>Controle de Turmas</mat-card-title>
   <mat-card-content>
     <div fxLayout="column" fxLayoutAlign="space-between">
       <mat-form-field>
@@ -8,10 +8,22 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Escolha o Curso</mat-label>
-       <mat-select [(value)]="selectedValue" [(ngModel)]="selectedValue">
-         <mat-option value={{course._id}} *ngFor="let course of allCourses">{{course.name}}</mat-option>
+        <mat-select [(value)]="selectedValue" [(ngModel)]="selectedValue">
+          <mat-option value={{course._id}} *ngFor="let course of allCourses">{{course.name}}</mat-option>
         </mat-select>
-
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>
+          Dias da Turma
+        </mat-label>
+        <mat-select multiple>
+          <mat-option value="segunda">Segunda-Feira</mat-option>
+          <mat-option value="terca">Terça-Feira</mat-option>
+          <mat-option value="quarta">Quarta-Feira</mat-option>
+          <mat-option value="quinta">Quinta-Feira</mat-option>
+          <mat-option value="sexta">Sexta-Feira</mat-option>
+          <mat-option value="sabado">Sábado</mat-option>
+        </mat-select>
       </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="end end">
         <button mat-button color="primary" (click)="save()">Salvar</button>
@@ -26,7 +38,7 @@
         <button mat-icon-button color="accent" (click)="delete(schoolClass)">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button color="primary"  (click)="edit(schoolClass)">
+        <button mat-icon-button color="primary" (click)="edit(schoolClass)">
           <mat-icon>edit</mat-icon>
         </button>
       </mat-list-item>

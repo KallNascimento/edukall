@@ -13,6 +13,7 @@ export class SchoolClassComponent implements OnInit {
 
   className: String = ''
   selectedValue=""
+  daysOfWeek:String
 
   allCourses: Course[]
   //coursePeriod:String[]
@@ -36,8 +37,8 @@ export class SchoolClassComponent implements OnInit {
   save() {
     this.schoolClassService.add({
       name: this.className,
-      course: this.selectedValue
-  //durationTime: this.courseTime,
+      course: this.selectedValue,
+      days: this.daysOfWeek
       //courseDays:this.coursePeriod,
     }).subscribe(
       (classe)=>{
